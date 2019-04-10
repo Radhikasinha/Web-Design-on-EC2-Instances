@@ -1,0 +1,15 @@
+{% extends 'uploads.html' %}
+{% block table %}
+<table id="table2"><tr>
+                <td style="padding: 15px">File Name</td><td>{{ filename }}</td></tr>
+                <td style="padding: 15px">{{ FileSize }}</td><td>{{size1 }}</td></tr>
+                        <tr><td style="padding: 15px">{{ Filecreationtime }}</td><td>{{ createdtime }}</td></tr>
+                        <tr><td style="padding: 15px">{{ LastModification }}</td><td>{{ lastmod }}</td></tr>
+                        <tr><td style="padding: 15px"> {{ Paper }} </td><td>{{ PageSize }}</td></tr>
+                        {% if not filename.endswith(".pdf") %}
+                         <tr><td style="padding: 15px"> Average Mean RGB </td><td>{{ AverageMeanOfRGB }}</td></tr>
+                         {% endif %}
+
+</table></div>
+{% endblock %}
+
