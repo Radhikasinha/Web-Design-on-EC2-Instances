@@ -1,3 +1,31 @@
+import os
+from flask import Flask, render_template,flash,request,url_for,jsonify,send_from_directory
+from werkzeug.utils import secure_filename
+from itertools import chain
+import shutil
+import time
+import json
+from datetime import datetime
+from PyPDF2 import PdfFileReader
+import schedule
+from PIL import Image
+import numpy as np
+import statistics
+import cv2
+
+BACKUP_FOLDER = '/var/www/html/flaskapp/static/backup'
+UPLOAD_FOLDER = '/var/www/html/flaskapp/static/uploads'
+ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
+SECRET_KEY='myname'
+filenames = []
+app = Flask(__name__)
+app.config['BACKUP_FOLDER'] = BACKUP_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = SECRET_KEY
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 def upload():
     return render_template('uploads.html')
 
